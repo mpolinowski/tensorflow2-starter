@@ -1,0 +1,1 @@
+sudo pacman -Syu bazel tensorflow-cuda python-tensorflow-cuda cuda cudnn protobuf

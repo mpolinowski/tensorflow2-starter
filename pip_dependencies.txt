@@ -1,0 +1,9 @@
+opencv-python
+wget
+protobuf
+matplotlib==3.2.2
+tensorflow
+tensorflow-gpu
+tensorflowjs
+pyqt5
+lxml
