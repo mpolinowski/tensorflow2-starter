@@ -10,7 +10,7 @@ from object_detection.builders import model_builder
 
 CUSTOM_MODEL_NAME = 'my_ssd_mobnet'
 LABEL_MAP_NAME = 'label_map.pbtxt'
-TEST_IMAGE = 'metal.tyrxdf6-zzggg-RGdgfc-zdfg-1cDGF17f.jpg'
+TEST_IMAGE = 'metal.fjgh138-asdc-afsc-sdfca-1dsfagdc5817f.jpg'
 
 paths = {
     'ANNOTATION_PATH': os.path.join('Tensorflow', 'workspace', 'annotations'),
@@ -32,7 +32,7 @@ detection_model = model_builder.build(model_config=configs['model'], is_training
 # Restore checkpoint
 ckpt = tf.compat.v2.train.Checkpoint(model=detection_model)
 # Select Checkpoint from `TFODCourse/Tensorflow/workspace/models/my_ssd_mobnet`
-ckpt.restore(os.path.join(paths['CHECKPOINT_PATH'], 'ckpt-3')).expect_partial()
+ckpt.restore(os.path.join(paths['CHECKPOINT_PATH'], 'ckpt-11')).expect_partial()
 
 
 @tf.function
