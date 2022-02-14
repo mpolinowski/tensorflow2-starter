@@ -11,6 +11,10 @@ GenerateTFRecord = 'https://github.com/mpolinowski/GenerateTFRecord'
 CUSTOM_MODEL_NAME = 'my_ssd_mobnet'
 PRETRAINED_MODEL_NAME = 'ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8'
 PRETRAINED_MODEL_URL = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8.tar.gz'
+# PRETRAINED_MODEL_NAME = 'ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8'
+# PRETRAINED_MODEL_URL = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8.tar.gz'
+# PRETRAINED_MODEL_NAME = 'ssd_mobilenet_v2_fpnlite_640x640_coco17_tpu-8'
+# PRETRAINED_MODEL_URL = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/ssd_mobilenet_v2_fpnlite_640x640_coco17_tpu-8.tar.gz'
 TF_RECORD_SCRIPT_NAME = 'generate_tfrecord.py'
 LABEL_MAP_NAME = 'label_map.pbtxt'
 
@@ -110,10 +114,13 @@ with tf.io.gfile.GFile(files['PIPELINE_CONFIG'], "wb") as f:
 
 # Train the model
 TRAINING_SCRIPT = os.path.join(paths['APIMODEL_PATH'], 'research', 'object_detection', 'model_main_tf2.py')
-training_command = "python {} --model_dir={} --pipeline_config_path={} --num_train_steps=2000".format(TRAINING_SCRIPT, paths['CHECKPOINT_PATH'],files['PIPELINE_CONFIG'])
+training_command = "python {} --model_dir={} --pipeline_config_path={} --num_train_steps=10000".format(
+    TRAINING_SCRIPT, paths['CHECKPOINT_PATH'],files['PIPELINE_CONFIG'])
 os.system(training_command)
 
 
 # Evaluate the Model
 eval_command = "python {} --model_dir={} --pipeline_config_path={} --checkpoint_dir={}".format(TRAINING_SCRIPT, paths['CHECKPOINT_PATH'],files['PIPELINE_CONFIG'], paths['CHECKPOINT_PATH'])
 os.system(eval_command)
+
+# Hit Ctrl+C to exit evaluation
